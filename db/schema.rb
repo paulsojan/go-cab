@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_20_133408) do
     t.float "start_longitude", null: false
     t.float "end_latitude", null: false
     t.float "end_longitude", null: false
-    t.float "fare", null: false
+    t.float "fare"
     t.string "status", null: false
     t.uuid "cab_id", null: false
     t.datetime "created_at", null: false
