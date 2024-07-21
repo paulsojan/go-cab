@@ -50,3 +50,9 @@ en:
   cab:
     not_available: "No cab is available at the moment."
     already_assigned: "Cab has been already assigned."
+    not_blank: "%{field} can't be blank"
+    invalid_latitude: "Latitude must be less than or equal to 90"
+    invalid_longitude: "Longitude must be less than or equal to 180"
+  booking:
+    not_blank: "%{field} can't be blank"
+    ride_completed: "Ride has already been completed."
