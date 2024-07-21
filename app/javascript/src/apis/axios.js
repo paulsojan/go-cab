@@ -1,65 +1,48 @@
+import { keysToCamelCase } from "@bigbinary/neeto-cist";
 import axios from "axios";
+import { t } from "i18next";
 import { Toastr } from "neetoui";
 
-import { getFromLocalStorage } from "utils/storage";
-
-axios.defaults.baseURL = "/";
-
-const setAuthHeaders = (setLoading = () => null) => {
+const setHttpHeaders = () => {
   axios.defaults.headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
-    "X-CSRF-TOKEN": document
-      .querySelector('[name="csrf-token"]')
-      .getAttribute("content"),
   };
-  const token = getFromLocalStorage("authToken");
-  const email = getFromLocalStorage("authEmail");
-  if (token && email) {
-    axios.defaults.headers["X-Auth-Email"] = email;
-    axios.defaults.headers["X-Auth-Token"] = token;
-  }
-  setLoading(false);
 };
 
-const resetAuthTokens = () => {
-  delete axios.defaults.headers["X-Auth-Email"];
-  delete axios.defaults.headers["X-Auth-Token"];
+const showErrorToastr = error => {
+  if (error.message === t("error.networkError")) {
+    Toastr.error(t("error.noInternetConnection"));
+  } else if (error.response?.status !== 404) {
+    Toastr.error(error);
+  }
+
+  return error;
 };
 
-const handleSuccessResponse = response => {
-  if (response) {
-    response.success = response.status === 200;
-    if (response.data.notice) {
-      Toastr.success(response.data.notice);
-    }
-  }
+const transformResponseKeysToCamelCase = response => {
+  if (response.data) response.data = keysToCamelCase(response.data);
 
   return response;
 };
 
-const handleErrorResponse = (error, authDispatch) => {
-  if (error.response?.status === 401) {
-    authDispatch({ type: "LOGOUT" });
-    Toastr.error(error.response?.data?.error);
-  } else {
-    Toastr.error(error.response?.data?.error || error.message);
-  }
-};
-
-const registerIntercepts = authDispatch => {
+const responseInterceptors = () => {
   axios.interceptors.response.use(
     response => {
-      handleSuccessResponse(response);
+      transformResponseKeysToCamelCase(response);
 
       return response.data;
     },
     error => {
-      handleErrorResponse(error, authDispatch);
+      showErrorToastr(error);
 
       return Promise.reject(error);
     }
   );
 };
 
-export { setAuthHeaders, resetAuthTokens, registerIntercepts };
+export default function initializeAxios() {
+  axios.defaults.baseURL = "/";
+  setHttpHeaders();
+  responseInterceptors();
+}

@@ -1,10 +1,6 @@
 const routes = {
   root: "/",
-  chat: {
-    show: "/chat/:id",
-  },
-  login: "/login",
-  signup: "/signup",
+  admin: "admin",
 };
 
 export default routes;

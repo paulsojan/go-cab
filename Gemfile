@@ -26,16 +26,10 @@ gem "puma"
 # JSON builder
 gem "jbuilder", ">= 2.7"
 
-# Authentication
-gem "devise", "~> 4.7"
-
 gem "bcrypt", "~> 3.1.13"
 
 # Support cross-browser css compatibility
 gem "autoprefixer-rails"
-
-# Admin framework
-gem "activeadmin"
 
 # Email validation
 gem "email_validator"
@@ -61,11 +55,6 @@ group :development, :test do
   gem "faker", "~> 2.19"
 end
 
-group :development, :staging, :heroku do
-  # Intercepts outgoing emails in non-production environment
-  gem "mail_interceptor"
-end
-
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code
   gem "web-console"
@@ -84,9 +73,6 @@ group :development do
 
   # vulnerability checker for Ruby itself
   gem "ruby_audit", require: false
-
-  # Preview email in browser
-  gem "letter_opener"
 end
 
 group :test do
@@ -98,11 +84,8 @@ group :test do
 
   # Minitest reporter plugin for CircleCI.
   gem "minitest-ci"
-
-  # Check semaphore config - this gem only relevant in semaphoreCI
-  gem "ffi", github: "ffi/ffi", submodules: true
 end
 
 gem "dotenv-rails"
 
-gem "pdf-reader"
+gem "geocoder"
