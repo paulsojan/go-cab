@@ -37,9 +37,9 @@ class ActiveSupport::TestCase
   include ActionView::Helpers::TranslationHelper
 end
 
-class ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
-end
+# class ActionDispatch::IntegrationTest
+#   include Devise::Test::IntegrationHelpers
+# end
 
 def headers(user, options = {})
   {

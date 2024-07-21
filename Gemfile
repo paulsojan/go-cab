@@ -29,6 +29,8 @@ gem "jbuilder", ">= 2.7"
 # Authentication
 gem "devise", "~> 4.7"
 
+gem "bcrypt", "~> 3.1.13"
+
 # Support cross-browser css compatibility
 gem "autoprefixer-rails"
 
@@ -100,14 +102,6 @@ group :test do
   # Check semaphore config - this gem only relevant in semaphoreCI
   gem "ffi", github: "ffi/ffi", submodules: true
 end
-
-gem "langchainrb"
-
-gem "ruby-openai", "~> 6.1.0"
-
-gem "google_palm_api", "0.1.3"
-
-gem "neighbor"
 
 gem "dotenv-rails"
 

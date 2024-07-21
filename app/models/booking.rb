@@ -4,6 +4,7 @@ class Booking < ApplicationRecord
   enum status: { in_progress: "in_progress", completed: "complated" }, _default: :in_progress
 
   belongs_to :cab
+  belongs_to :user
 
   validates :start_latitude, presence: true
   validates :start_longitude, presence: true
