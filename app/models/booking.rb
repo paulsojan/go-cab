@@ -9,7 +9,7 @@ class Booking < ApplicationRecord
   validates :start_longitude, presence: true
   validates :end_latitude, presence: true
   validates :end_longitude, presence: true
-  validates :fare, presence: true
+  validates :fare, presence: true, on: :update
   validate :can_accept_new_requests?, on: :create
 
   before_create :update_cab_availability

@@ -7,7 +7,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.float :start_longitude, null: false
       t.float :end_latitude, null: false
       t.float :end_longitude, null: false
-      t.float :fare, null: false
+      t.float :fare
       t.string :status, null: false
       t.references :cab, null: false, foreign_key: true, type: :uuid
 

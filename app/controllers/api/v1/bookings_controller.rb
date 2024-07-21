@@ -9,13 +9,20 @@ class Api::V1::BookingsController < Api::V1::BaseController
     if @cab.blank?
       render_error(t("cab.not_available"), :not_found)
     else
-      @cab.bookings.create!(booking_params.except(:cab_type))
-      render_json(@cab)
+      booking = @cab.bookings.create!(booking_params.except(:cab_type))
+      render_json({ cab: @cab, booking_id: booking.id })
     end
   end
 
   def update
-    render_message("Successfuly updated")
+    if @booking.status == Booking.statuses[:in_progress]
+      fare = FareCalculator.new(@booking).process
+      @booking.update!(status: Booking.statuses[:completed], fare:)
+      @booking.cab.update!(is_available: true, latitude: @booking.end_latitude, longitude: @booking.end_longitude)
+      render_json({ fare: })
+    else
+      render_message("Ride has already been completed.")
+    end
   end
 
   private
