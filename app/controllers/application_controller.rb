@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  # include Expirable
   protect_from_forgery with: :null_session
 
-  # def ensure_current_user_is_superadmin!
-  #   authenticate_user!
+  private
 
-  #   unless current_user.super_admin?
-  #     redirect_to root_path, status: :forbidden, alert: "Unauthorized Access!"
-  #   end
-  # end
+    def current_user
+      @_current_user ||= User.first
+    end
 end

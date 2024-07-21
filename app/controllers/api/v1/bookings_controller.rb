@@ -9,7 +9,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
     if @cab.blank?
       render_error(t("cab.not_available"), :not_found)
     else
-      booking = @cab.bookings.create!(booking_params.except(:cab_type))
+      booking = current_user.bookings.create!(booking_params.merge(cab: @cab).except(:cab_type))
       render_json({ cab: @cab, booking_id: booking.id })
     end
   end
