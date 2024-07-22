@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FareCalculator
+class FareCalculatorService
   attr_reader :booking
 
   def initialize(booking)
