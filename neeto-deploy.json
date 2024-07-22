@@ -1,0 +1,65 @@
+{
+  "name": "go-cab",
+  "scripts": {
+    "postdeploy": "bundle exec rake populate_sample_data"
+  },
+  "stack": "heroku-22",
+  "env": {
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    },
+    "RACK_ENV": {
+      "value": "heroku"
+    },
+    "RAILS_ENV": {
+      "value": "heroku"
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "required": false
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": false
+    },
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "LOG_LEVEL": {
+      "value": "DEBUG"
+    },
+    "YARN_PRODUCTION": {
+      "value": "true"
+    },
+    "YARN_CACHE": {
+      "value": "true"
+    },
+    "NODE_MODULES_CACHE": {
+      "value": "true"
+    }
+  },
+  "formation": {},
+  "addons": [
+    {
+      "plan": "neetodeploy-postgresql:basic",
+      "options": {
+        "version": "14"
+      }
+    },
+    {
+      "plan": "neetodeploy-redis:basic",
+      "options": {
+        "version": "6"
+      }
+    },
+    {
+      "plan": "bonsai:sandbox-6"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
