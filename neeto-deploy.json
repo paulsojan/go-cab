@@ -1,12 +1,9 @@
 {
   "name": "go-cab",
-  "scripts": {
-    "postdeploy": "bundle exec rake populate_sample_data"
-  },
-  "stack": "heroku-22",
+  "scripts": {},
   "env": {
     "SECRET_KEY_BASE": {
-      "generator": "secret"
+      "required": false
     },
     "RACK_ENV": {
       "value": "heroku"
@@ -39,16 +36,13 @@
   "formation": {},
   "addons": [
     {
-      "plan": "neetodeploy-postgresql:basic",
+      "plan": "heroku-postgresql",
       "options": {
-        "version": "14"
+        "version": "12"
       }
     },
     {
-      "plan": "neetodeploy-redis:basic",
-      "options": {
-        "version": "6"
-      }
+      "plan": "heroku-redis:hobby-dev"
     },
     {
       "plan": "bonsai:sandbox-6"
