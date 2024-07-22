@@ -4,9 +4,10 @@ require "test_helper"
 
 class NearbyCabFinderServiceTest < ActiveSupport::TestCase
   def setup
-    @cab_one = create(:cab, longitude: 10.0244029, latitude: 76.3108458, cab_type: :premium)
-    @cab_two = create(:cab, longitude: 10.0244944, latitude: 76.3076186)
-    @cab_three = create(:cab, longitude: 10.0217645, latitude: 76.3710433)
+    @user = create(:user)
+    @cab_one = create(:cab, longitude: 10.0244029, latitude: 76.3108458, cab_type: :premium, user: @user)
+    @cab_two = create(:cab, longitude: 10.0244944, latitude: 76.3076186, user: @user)
+    @cab_three = create(:cab, longitude: 10.0217645, latitude: 76.3710433, user: @user)
   end
 
   def test_nearby_cab_finder_service_should_find_nearby_cab
@@ -37,6 +38,6 @@ class NearbyCabFinderServiceTest < ActiveSupport::TestCase
   private
 
     def nearby_cab(booking_details)
-      NearbyCabFinderService.new(booking_details)
+      NearbyCabFinderService.new(booking_details, @user)
     end
 end

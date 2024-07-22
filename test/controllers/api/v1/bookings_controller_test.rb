@@ -4,8 +4,9 @@ require "test_helper"
 
 class Api::V1::BookingsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @cab_one = create(:cab)
-    @cab_two = create(:cab, cab_type: :premium)
+    @user = create(:user)
+    @cab_one = create(:cab, user: @user)
+    @cab_two = create(:cab, cab_type: :premium, user: @user)
   end
 
   def test_should_create_booking

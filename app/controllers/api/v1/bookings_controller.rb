@@ -4,7 +4,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
   before_action :load_booking!, only: :update
 
   def create
-    @cab = NearbyCabFinderService.new(booking_params).process
+    @cab = NearbyCabFinderService.new(booking_params, current_user).process
 
     if @cab.blank?
       render_error(t("cab.not_available"), :unprocessable_entity)
