@@ -4,7 +4,7 @@ json.cabs @cabs do |cab|
     :cab_type,
     :is_available,
     :title
-  json.current_location "hai"
+  json.current_location Geocoder.search([cab.latitude, cab.longitude]).first.address
 end
 json.bookings @bookings do |booking|
   json.extract! booking,
