@@ -8,8 +8,6 @@ import initializeAxios from "apis/axios";
 import queryClient from "utils/queryClient";
 
 import Main from "./components/Main";
-// eslint-disable-next-line import/order
-import "./common/i18n";
 
 initializeAxios();
 const App = () => (

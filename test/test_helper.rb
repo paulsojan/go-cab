@@ -37,17 +37,6 @@ class ActiveSupport::TestCase
   include ActionView::Helpers::TranslationHelper
 end
 
-# class ActionDispatch::IntegrationTest
-#   include Devise::Test::IntegrationHelpers
-# end
-
-def headers(user, options = {})
-  {
-    "X-Auth-Token" => user.authentication_token,
-    "X-Auth-Email" => user.email
-  }.merge(options)
-end
-
 def response_body
   response.parsed_body
 end
