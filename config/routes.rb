@@ -1,20 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  def draw(routes_name)
-    instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :users, only: :create, constraints: { id: /.*/ }
+      resources :bookings, only: [:create, :update]
+      resources :admin, only: :index
+    end
   end
-
-  # devise_scope :user do
-  #   scope "my" do
-  #     put "profile", to: "profiles#update"
-  #     patch "password", to: "passwords#update"
-  #     patch "email", to: "profiles#update_email"
-  #   end
-  # end
-
-  draw :sidekiq
-  draw :api
 
   root "home#index"
   get "*path", to: "home#index", via: :all
