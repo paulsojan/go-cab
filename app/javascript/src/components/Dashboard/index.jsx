@@ -1,5 +1,6 @@
 import React from "react";
 
+import { capitalize } from "@bigbinary/neeto-cist";
 import classNames from "classnames";
 import { PageLoader, Tooltip, Typography } from "neetoui";
 import { isNil } from "ramda";
@@ -28,7 +29,7 @@ const Dashboard = () => {
       <div className="flex flex-col items-end p-10 text-lg font-bold">
         <Typography>Total completed trips: {totalTrips}</Typography>
         <Typography className="mt-4">
-          Total fares earned: {totalFare}
+          Total fares earned: ₹{totalFare}
         </Typography>
       </div>
       <div className="mx-auto mt-28 flex flex-wrap justify-center">
@@ -52,6 +53,9 @@ const Dashboard = () => {
                   {cab.isAvailable ? "Cab available" : "Ride in progress"}
                 </div>
                 <div className="mt-5 flex-1">
+                  <Typography className="mb-1 text-sm">
+                    <b>Type: </b> {capitalize(cab.cabType)}
+                  </Typography>
                   <Tooltip
                     content={cab.currentLocation}
                     followCursor="horizontal"

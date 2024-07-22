@@ -17,9 +17,9 @@ class Api::V1::BookingsController < Api::V1::BaseController
   def update
     if @booking.status == Booking.statuses[:in_progress]
       fare = FareCalculatorService.new(@booking).process
-      @booking.update!(status: Booking.statuses[:completed], fare:)
+      @booking.update!(status: Booking.statuses[:completed], fare: fare.round(2))
       @booking.cab.update!(is_available: true, latitude: @booking.end_latitude, longitude: @booking.end_longitude)
-      render_json({ amount_to_pay: fare })
+      render_json({ amount_to_pay: fare.round(2) })
     else
       render_message(t("booking.ride_completed"), :unprocessable_entity)
     end
