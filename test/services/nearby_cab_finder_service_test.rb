@@ -9,7 +9,7 @@ class NearbyCabFinderServiceTest < ActiveSupport::TestCase
     @cab_three = create(:cab, longitude: 10.0217645, latitude: 76.3710433)
   end
 
-  def test_should_find_nearby_cab
+  def test_nearby_cab_finder_service_should_find_nearby_cab
     booking_details = {
       start_longitude: 10.0188256,
       start_latitude: 76.3523507,
@@ -19,7 +19,7 @@ class NearbyCabFinderServiceTest < ActiveSupport::TestCase
     assert_equal @cab_three.id, nearby_cab_from_service.id
   end
 
-  def test_should_return_empty_when_no_cabs_are_available
+  def test_nearby_cab_finder_service_should_return_empty_when_no_cabs_are_available
     @cab_one.update!(is_available: false)
     @cab_two.update!(is_available: false)
     @cab_three.update!(is_available: false)
