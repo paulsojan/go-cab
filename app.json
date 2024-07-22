@@ -5,7 +5,7 @@
   },
   "env": {
     "SECRET_KEY_BASE": {
-      "generator": "secret"
+      "required": false
     },
     "RACK_ENV": {
       "value": "heroku"
