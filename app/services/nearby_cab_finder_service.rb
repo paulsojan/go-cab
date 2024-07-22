@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NearbyCabFinder
+class NearbyCabFinderService
   attr_reader :start_latitude, :start_longitude, :cab_type
 
   def initialize(booking_params)
