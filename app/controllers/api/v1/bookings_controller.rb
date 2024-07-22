@@ -4,7 +4,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
   before_action :load_booking!, only: :update
 
   def create
-    @cab = NearbyCabFinder.new(booking_params).process
+    @cab = NearbyCabFinderService.new(booking_params).process
 
     if @cab.blank?
       render_error(t("cab.not_available"), :unprocessable_entity)
@@ -16,7 +16,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
 
   def update
     if @booking.status == Booking.statuses[:in_progress]
-      fare = FareCalculator.new(@booking).process
+      fare = FareCalculatorService.new(@booking).process
       @booking.update!(status: Booking.statuses[:completed], fare:)
       @booking.cab.update!(is_available: true, latitude: @booking.end_latitude, longitude: @booking.end_longitude)
       render_json({ amount_to_pay: fare })
