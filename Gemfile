@@ -5,9 +5,11 @@ source "https://rubygems.org"
 ruby "3.2.2"
 
 gem "rails", "~> 7.0.5"
+gem "sprockets"
 
 # friends of Rails
 gem "sass-rails", ">= 6"
+gem "sprockets-rails"
 gem "uglifier", ">= 2.7.1"
 
 gem "shakapacker"
@@ -28,6 +30,12 @@ gem "bcrypt", "~> 3.1.13"
 
 # Support cross-browser css compatibility
 gem "autoprefixer-rails"
+
+# Email validation
+gem "email_validator"
+
+# Adds prefix to subject in emails
+gem "email_prefixer"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.9.4", require: false
@@ -60,6 +68,9 @@ group :development do
   # For linting ERB files
   gem "erb_lint", require: false, git: "https://github.com/Shopify/erb-lint.git", branch: "main"
 
+  # Patch-level verification for Bundler
+  gem "bundler-audit", require: false
+
   # vulnerability checker for Ruby itself
   gem "ruby_audit", require: false
 end
@@ -74,5 +85,7 @@ group :test do
   # Minitest reporter plugin for CircleCI.
   gem "minitest-ci"
 end
+
+gem "dotenv-rails"
 
 gem "geocoder"
