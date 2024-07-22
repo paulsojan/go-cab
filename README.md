@@ -120,7 +120,7 @@ Visit http://localhost:3000 to view the Admin dashboard.
       "start_longitude": 76.363913,
       "end_latitude": 10.024365,
       "end_longitude": 76.30873,
-      "fare": 73.32001,
+      "fare": 73.32,
       "status": "completed"
     },
     {
@@ -133,7 +133,7 @@ Visit http://localhost:3000 to view the Admin dashboard.
       "status": "in_progress"
     }
   ],
-  "total_trips": 2,
-  "total_fare_earned": 146.64
+  "total_trips": 1,
+  "total_fare_earned": 73.32
 }
 ```
