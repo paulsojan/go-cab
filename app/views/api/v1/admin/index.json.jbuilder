@@ -8,6 +8,7 @@ json.cabs @cabs do |cab|
 end
 json.bookings @bookings do |booking|
   json.extract! booking,
+    :id,
     :start_latitude,
     :start_longitude,
     :end_latitude,

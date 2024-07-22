@@ -6,10 +6,5 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     password { "welcome" }
-    password_confirmation { "welcome" }
-
-    trait :admin do
-      role { "super_admin" }
-    end
   end
 end

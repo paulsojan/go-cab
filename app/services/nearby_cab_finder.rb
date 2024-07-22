@@ -4,8 +4,8 @@ class NearbyCabFinder
   attr_reader :start_latitude, :start_longitude, :cab_type
 
   def initialize(booking_params)
-    @start_latitude = booking_params[:start_latitude]
-    @start_longitude = booking_params[:start_longitude]
+    @start_latitude = booking_params[:start_latitude].to_f
+    @start_longitude = booking_params[:start_longitude].to_f
     @cab_type = booking_params[:cab_type]
   end
 
